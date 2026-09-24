@@ -1,0 +1,43 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root { color-scheme: dark; }
+html { scroll-behavior: smooth; background:#080b12; }
+body {
+  margin:0; min-width:320px; overflow-x:hidden;
+  background:
+    radial-gradient(circle at 15% 15%, rgba(59,130,246,.10), transparent 28rem),
+    radial-gradient(circle at 85% 25%, rgba(139,92,246,.09), transparent 30rem), #080b12;
+  color:#e5e7eb; font-family:Inter,system-ui,sans-serif;
+}
+::selection { background:rgba(96,165,250,.3); }
+.grid-bg {
+  background-image:linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px);
+  background-size:48px 48px; mask-image:linear-gradient(to bottom,black 0%,transparent 85%);
+}
+.glow { box-shadow:0 0 80px rgba(59,130,246,.12),0 0 140px rgba(139,92,246,.08); }
+.card { border:1px solid rgba(255,255,255,.08); background:rgba(255,255,255,.025); backdrop-filter:blur(16px); }
+.card:hover { border-color:rgba(96,165,250,.3); background:rgba(255,255,255,.04); }
+.reveal { opacity:0; transform:translateY(18px); animation:reveal .8s ease forwards; }
+@keyframes reveal { to { opacity:1; transform:translateY(0); } }
+.scan { animation:scan 5s ease-in-out infinite; }
+@keyframes scan { 0%,100%{transform:translateX(-110%);opacity:0} 20%{opacity:.8} 50%{opacity:1} 80%{opacity:.8} 100%{transform:translateX(110%);opacity:0} }
+.float { animation:float 6s ease-in-out infinite; }
+@keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
+.project-card .project-image { transform:scale(1); transition:transform .6s cubic-bezier(.2,.8,.2,1); }
+.project-card:hover .project-image { transform:scale(1.035); }
+.project-overlay { opacity:0; transition:opacity .35s ease; }
+.project-card:hover .project-overlay { opacity:1; }
+.icon-tile { transition:transform .25s ease,border-color .25s ease,background .25s ease; }
+.icon-tile:hover { transform:translateY(-4px); border-color:rgba(96,165,250,.3); background:rgba(255,255,255,.05); }
+@media (max-width: 767px) {
+  .hero-photo { height:390px !important; }
+  .hero-title { font-size:3.35rem !important; line-height:1 !important; }
+  .hero-copy { font-size:.98rem !important; line-height:1.75rem !important; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior:auto; }
+  *,*::before,*::after { animation-duration:.01ms !important; animation-iteration-count:1 !important; transition-duration:.01ms !important; }
+}
+.line-clamp-2 { display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; }

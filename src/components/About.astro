@@ -1,0 +1,14 @@
+<section id="about" class="scroll-mt-28 py-28"><div class="mx-auto max-w-6xl px-4">
+  <div class="mb-12 max-w-2xl"><p class="font-mono text-xs uppercase tracking-[.25em] text-blue-400">01 / About</p><h2 class="mt-3 font-display text-4xl font-bold text-white sm:text-5xl">A mix of code, systems & real-world problem solving.</h2></div>
+  <div class="grid gap-5 md:grid-cols-2">
+    <article class="card reveal rounded-3xl p-7 md:p-9"><p class="text-base leading-8 text-slate-400">I'm Nhem Chan. My work sits somewhere between software development, AI automation, IT support and live production.</p><p class="mt-5 text-base leading-8 text-slate-400">I started with hands-on troubleshooting and became interested in building my own tools and systems. I prefer projects that solve a real problem or make someone's work easier.</p></article>
+    <div class="grid gap-5 sm:grid-cols-2">
+      {[
+        ["💻","Software","Web apps, APIs, bots and practical tools."],
+        ["🤖","AI & Automation","LLMs, research workflows and automation."],
+        ["🎥","Live Production","vMix, RTMP, cameras and streaming."],
+        ["🖥️","IT Systems","Windows, hardware, networking and support."]
+      ].map(([icon,title,desc]) => <div class="card rounded-3xl p-6 transition duration-300 hover:-translate-y-1"><div class="text-2xl">{icon}</div><h3 class="mt-5 font-semibold text-white">{title}</h3><p class="mt-2 text-sm leading-6 text-slate-500">{desc}</p></div>)}
+    </div>
+  </div>
+</div></section>

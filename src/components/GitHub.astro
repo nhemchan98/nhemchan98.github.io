@@ -1,0 +1,45 @@
+<section class="py-28">
+  <div class="mx-auto max-w-6xl px-4">
+    <div class="grid gap-5 lg:grid-cols-[.8fr_1.2fr]">
+      <div class="card rounded-3xl p-7 md:p-9">
+        <p class="font-mono text-xs uppercase tracking-[.25em] text-blue-400">05 / GitHub</p>
+        <h2 class="mt-3 font-display text-4xl font-bold text-white">Open source & experiments.</h2>
+        <p class="mt-5 text-sm leading-7 text-slate-400">
+          A live snapshot of public repositories. The data comes directly from GitHub's public API.
+        </p>
+        <a href="https://github.com/nhemchan98?tab=repositories" target="_blank" rel="noreferrer"
+          class="mt-7 inline-flex rounded-xl border border-white/10 px-4 py-2.5 text-sm font-semibold text-slate-200 hover:border-blue-400/40 hover:bg-blue-400/10">
+          View GitHub ↗
+        </a>
+      </div>
+
+      <div class="card rounded-3xl p-5 md:p-7">
+        <div id="githubRepos" class="grid gap-3 sm:grid-cols-2">
+          <div class="rounded-2xl border border-white/5 p-5 text-sm text-slate-500">Loading repositories…</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  const box = document.getElementById("githubRepos");
+  fetch("https://api.github.com/users/nhemchan98/repos?sort=updated&per_page=4")
+    .then((r) => r.ok ? r.json() : Promise.reject())
+    .then((repos) => {
+      box.innerHTML = repos.map((repo) => `
+        <a href="${repo.html_url}" target="_blank" rel="noreferrer"
+           class="rounded-2xl border border-white/5 bg-white/[.02] p-5 transition hover:-translate-y-0.5 hover:border-blue-400/30">
+          <div class="flex items-center justify-between gap-3">
+            <h3 class="truncate font-semibold text-white">${repo.name}</h3>
+            <span class="text-xs text-slate-600">↗</span>
+          </div>
+          <p class="mt-2 line-clamp-2 text-xs leading-5 text-slate-500">${repo.description ?? "No description yet."}</p>
+          <div class="mt-4 text-[10px] text-slate-600">${repo.language ?? "Project"} · ★ ${repo.stargazers_count}</div>
+        </a>
+      `).join("");
+    })
+    .catch(() => {
+      box.innerHTML = `<div class="rounded-2xl border border-white/5 p-5 text-sm text-slate-500">GitHub data is temporarily unavailable. <a class="text-blue-400" href="https://github.com/nhemchan98?tab=repositories">Open repositories ↗</a></div>`;
+    });
+</script>
